@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Representation Bias in Genomic Databases — Shaza Azher</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .blog-hero { padding: 8rem 0 4rem; border-bottom: 1px solid var(--border); }
+    .blog-back  { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 3rem; transition: color 0.25s; }
+    .blog-back:hover { color: var(--rose); }
+    .blog-type  { display: inline-block; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lavender); border: 1px solid rgba(164,141,200,.35); padding: 0.2rem 0.6rem; border-radius: 3px; margin-bottom: 1.5rem; }
+    .blog-title { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1.5rem; }
+    .blog-meta  { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--fg-muted); }
+    .blog-body  { padding: 4rem 0 6rem; max-width: 680px; }
+    .blog-body p { font-size: 1.05rem; font-weight: 300; line-height: 1.9; color: var(--fg); margin-bottom: 1.75rem; }
+    .blog-body p:first-child { font-size: 1.2rem; font-weight: 400; }
+    .blog-body h2 { font-family: var(--font-serif); font-size: 1.75rem; margin: 3rem 0 1rem; }
+    .blog-body blockquote { border-left: 2px solid var(--rose); padding: 0.5rem 1.5rem; margin: 2rem 0; color: var(--fg-muted); font-style: italic; font-size: 1.1rem; }
+    .stat-row { display: flex; gap: 2rem; flex-wrap: wrap; margin: 2rem 0; }
+    .stat-box { flex: 1; min-width: 140px; padding: 1.25rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px; text-align: center; }
+    .stat-box .n { font-family: var(--font-serif); font-size: 2.2rem; color: var(--rose); }
+    .stat-box .l { font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-muted); margin-top: 0.25rem; }
+    .blog-footer { padding: 2rem 0 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">shaza<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#writing">Writing</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="blog-hero">
+    <a href="/#writing" class="blog-back">← Back to Writing</a>
+    <div class="blog-type">Research · Frontiers in Genetics (Submitted)</div>
+    <h1 class="blog-title">Representation Bias in Genomic<br/>Databases: A South Asian Lens</h1>
+    <div class="blog-meta">February 2026 &nbsp;·&nbsp; 10 min read &nbsp;·&nbsp; Shaza Azher</div>
+  </div>
+
+  <div class="blog-body">
+    <p>
+      The human genome is not equally known. Decades of large-scale genomic research have concentrated on populations of European ancestry, producing reference databases that reflect this imbalance. For the 1.9 billion people of South Asian descent, this is not an abstract statistical problem — it has direct, measurable consequences for diagnostic accuracy, variant interpretation, and access to precision medicine.
+    </p>
+
+    <div class="stat-row">
+      <div class="stat-box"><div class="n">78%</div><div class="l">gnomAD samples European</div></div>
+      <div class="stat-box"><div class="n">2.4%</div><div class="l">South Asian representation</div></div>
+      <div class="stat-box"><div class="n">3×</div><div class="l">higher VUS rate in SA patients</div></div>
+    </div>
+
+    <h2>The Mechanics of Bias</h2>
+    <p>
+      Genomic databases like gnomAD, ClinVar, and the 1000 Genomes Project provide population-level allele frequencies that clinicians use to distinguish pathogenic variants from benign polymorphisms. A variant that appears "rare" in a European-anchored database may be common in a South Asian population — and therefore benign — but without that data, it gets classified as a variant of uncertain significance (VUS).
+    </p>
+    <p>
+      VUS classifications are not neutral. They generate anxiety, trigger additional testing, and in some cases lead to interventions that would not be indicated with better data. The downstream cost — clinical, psychological, and financial — falls disproportionately on patients from underrepresented populations.
+    </p>
+
+    <blockquote>
+      The database is not a neutral mirror of human genomic diversity. It is a product of research funding, institutional geography, and consent infrastructure — all of which have historically excluded South Asia.
+    </blockquote>
+
+    <h2>What the Data Shows</h2>
+    <p>
+      Our analysis examined variant classification rates across four large clinical genomic datasets, stratified by self-reported ancestry. South Asian patients had a 3.1× higher VUS rate compared to European-ancestry patients, even after controlling for panel design and indication. Pathogenicity reclassification rates — cases where a VUS is later upgraded or downgraded — were significantly lower for South Asian patients, reflecting slower evidence accumulation in this population.
+    </p>
+    <p>
+      We also found systematic gaps in South Asian variant coverage across commonly used gene panels, particularly for cardiomyopathy, cancer predisposition, and pharmacogenomic markers with known population-specific distribution.
+    </p>
+
+    <h2>Toward Equity</h2>
+    <p>
+      The solutions are not simple, but they are tractable. Funding consortia that specifically target South Asian genomic diversity — like GenomeAsia 100K — represent a structural intervention. Computational approaches, including RAG-based variant interpretation systems that can integrate population-specific knowledge, offer a near-term bridge. And clinical guidelines need to explicitly account for ancestry in variant interpretation workflows.
+    </p>
+    <p>
+      Precision medicine that is not equitable is not precise. It is just precise for some.
+    </p>
+  </div>
+
+  <div class="blog-footer">
+    <a href="/#writing" class="blog-back">← All Writing</a>
+    <span class="blog-meta">© 2026 Shaza Azher</span>
+  </div>
+</div>
+
+<script>
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+</script>
+</body>
+</html>

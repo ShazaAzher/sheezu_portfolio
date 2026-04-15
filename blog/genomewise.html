@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GenomeWise — Shaza Azher</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .blog-hero { padding: 8rem 0 4rem; border-bottom: 1px solid var(--border); }
+    .blog-back  { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 3rem; transition: color 0.25s; }
+    .blog-back:hover { color: var(--rose); }
+    .blog-type  { display: inline-block; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lavender); border: 1px solid rgba(164,141,200,.35); padding: 0.2rem 0.6rem; border-radius: 3px; margin-bottom: 1.5rem; }
+    .blog-title { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1.5rem; }
+    .blog-meta  { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--fg-muted); }
+    .blog-body  { padding: 4rem 0 6rem; max-width: 680px; }
+    .blog-body p { font-size: 1.05rem; font-weight: 300; line-height: 1.9; color: var(--fg); margin-bottom: 1.75rem; }
+    .blog-body p:first-child { font-size: 1.2rem; font-weight: 400; }
+    .blog-body h2 { font-family: var(--font-serif); font-size: 1.75rem; margin: 3rem 0 1rem; }
+    .blog-body blockquote { border-left: 2px solid var(--rose); padding: 0.5rem 1.5rem; margin: 2rem 0; color: var(--fg-muted); font-style: italic; font-size: 1.1rem; }
+    .tech-tag { display: inline-block; background: rgba(212,132,154,.1); border: 1px solid rgba(212,132,154,.25); color: var(--rose); font-family: var(--font-mono); font-size: 0.65rem; padding: 0.2rem 0.55rem; border-radius: 3px; margin: 0.2rem; }
+    .blog-footer { padding: 2rem 0 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">shaza<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#writing">Writing</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="blog-hero">
+    <a href="/#writing" class="blog-back">← Back to Writing</a>
+    <div class="blog-type">Research · bioRxiv (Preprint)</div>
+    <h1 class="blog-title">GenomeWise: RAG-Based Genomic<br/>Variant Annotation</h1>
+    <div class="blog-meta">March 2026 &nbsp;·&nbsp; 12 min read &nbsp;·&nbsp; Shaza Azher</div>
+    <div style="margin-top:1.25rem;">
+      <span class="tech-tag">DNABERT</span>
+      <span class="tech-tag">FAISS</span>
+      <span class="tech-tag">RAG</span>
+      <span class="tech-tag">Python</span>
+      <span class="tech-tag">Local LLM</span>
+      <span class="tech-tag">Bioinformatics</span>
+    </div>
+  </div>
+
+  <div class="blog-body">
+    <p>
+      Genomic variant annotation — the process of attaching biological meaning to mutations detected in sequencing data — remains one of the most labor-intensive bottlenecks in clinical genomics. GenomeWise is a retrieval-augmented generation (RAG) pipeline designed to automate and improve this process, combining DNABERT embeddings, FAISS vector search, and a locally-hosted large language model.
+    </p>
+
+    <h2>The Problem</h2>
+    <p>
+      When a sequencing lab identifies a variant of uncertain significance (VUS), clinicians currently rely on a patchwork of databases — ClinVar, OMIM, gnomAD — and manual literature review. This process is slow, inconsistent, and difficult to scale. For South Asian populations in particular, sparse representation in reference databases compounds the uncertainty.
+    </p>
+
+    <blockquote>
+      Variant interpretation is not a lookup problem. It is a reasoning problem. RAG lets us treat it as one.
+    </blockquote>
+
+    <h2>Architecture</h2>
+    <p>
+      GenomeWise operates in three stages. First, variant sequences are embedded using DNABERT — a transformer pretrained on the human genome — producing dense vector representations that encode functional and structural context. These embeddings are indexed in a FAISS vector store alongside curated annotations from public databases.
+    </p>
+    <p>
+      At inference time, a query variant is embedded and retrieved against the FAISS index. The top-k most similar annotated variants are fetched as context. This context, combined with a structured prompt describing the query variant, is passed to a locally-hosted LLM (Ollama, quantized Mistral or LLaMA 3) for final interpretation generation.
+    </p>
+    <p>
+      The entire pipeline runs locally — no patient data leaves the clinical environment, which is a hard requirement for production genomics work.
+    </p>
+
+    <h2>Key Results</h2>
+    <p>
+      In preliminary evaluations on a held-out set of previously classified ClinVar variants, GenomeWise achieved 81% concordance with expert classifications at tier-1 pathogenicity calls. Retrieval precision at k=5 averaged 0.74 across variant classes. Performance was notably lower on variants with limited database representation — underscoring the data equity problem the system was partly designed to address.
+    </p>
+
+    <h2>What's Next</h2>
+    <p>
+      The immediate roadmap includes expanding the knowledge base to incorporate South Asian-specific genomic studies, fine-tuning DNABERT on variant-rich regions, and building an evaluation harness for clinical validation. A preprint is in preparation for submission to bioRxiv, with a target journal of Bioinformatics or Briefings in Bioinformatics.
+    </p>
+    <p>
+      GenomeWise is the technical core of a broader research agenda: making clinical genomics work for populations that have historically been excluded from the datasets that power it.
+    </p>
+  </div>
+
+  <div class="blog-footer">
+    <a href="/#writing" class="blog-back">← All Writing</a>
+    <span class="blog-meta">© 2026 Shaza Azher</span>
+  </div>
+</div>
+
+<script>
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+</script>
+</body>
+</html>

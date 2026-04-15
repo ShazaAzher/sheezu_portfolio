@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Transformers Actually Work — Shaza Azher</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .blog-hero { padding: 8rem 0 4rem; border-bottom: 1px solid var(--border); }
+    .blog-back  { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 3rem; transition: color 0.25s; }
+    .blog-back:hover { color: var(--rose); }
+    .blog-type  { display: inline-block; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lavender); border: 1px solid rgba(164,141,200,.35); padding: 0.2rem 0.6rem; border-radius: 3px; margin-bottom: 1.5rem; }
+    .blog-title { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1.5rem; }
+    .blog-meta  { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--fg-muted); }
+    .blog-body  { padding: 4rem 0 6rem; max-width: 680px; }
+    .blog-body p { font-size: 1.05rem; font-weight: 300; line-height: 1.9; color: var(--fg); margin-bottom: 1.75rem; }
+    .blog-body p:first-child { font-size: 1.2rem; font-weight: 400; }
+    .blog-body h2 { font-family: var(--font-serif); font-size: 1.75rem; margin: 3rem 0 1rem; }
+    .blog-body h3 { font-family: var(--font-serif); font-size: 1.3rem; margin: 2rem 0 0.75rem; color: var(--rose); }
+    .blog-body blockquote { border-left: 2px solid var(--rose); padding: 0.5rem 1.5rem; margin: 2rem 0; color: var(--fg-muted); font-style: italic; font-size: 1.1rem; }
+    .episode-list { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0; }
+    .episode { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem 1.25rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px; }
+    .episode-num { font-family: var(--font-mono); font-size: 0.7rem; color: var(--rose); flex-shrink: 0; padding-top: 0.1rem; }
+    .episode-title { font-size: 0.95rem; font-weight: 400; margin-bottom: 0.2rem; }
+    .episode-desc { font-size: 0.82rem; color: var(--fg-muted); font-weight: 300; }
+    .blog-footer { padding: 2rem 0 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">shaza<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#writing">Writing</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="blog-hero">
+    <a href="/#writing" class="blog-back">← Back to Writing</a>
+    <div class="blog-type">Content Series · @sheezusolves</div>
+    <h1 class="blog-title">How Transformers Actually Work<br/>(5-Part Series)</h1>
+    <div class="blog-meta">Ongoing · TikTok / Instagram · Shaza Azher</div>
+  </div>
+
+  <div class="blog-body">
+    <p>
+      Transformers are the architecture behind GPT, BERT, DALL·E, Whisper, and virtually every frontier AI system you've heard of. But most explanations of how they work are either too shallow ("it's like attention, basically") or too dense (here's the full Vaswani et al. paper, good luck). This series lives in between.
+    </p>
+
+    <blockquote>
+      GRWM while I explain multi-head self-attention. No, really.
+    </blockquote>
+
+    <p>
+      The @sheezusolves format is deliberate: get-ready-with-me beauty content fused with deep technical explainers. The juxtaposition is the point. Technical knowledge doesn't require a particular aesthetic. And beauty content doesn't require intellectual surrender.
+    </p>
+
+    <h2>The Series</h2>
+    <div class="episode-list">
+      <div class="episode">
+        <div class="episode-num">EP 01</div>
+        <div>
+          <div class="episode-title">The Attention Mechanism, Explained with Highlighters</div>
+          <div class="episode-desc">What does "attention" actually mean? We start with the intuition: when you read a sentence, not all words matter equally. Transformers learn which ones do.</div>
+        </div>
+      </div>
+      <div class="episode">
+        <div class="episode-num">EP 02</div>
+        <div>
+          <div class="episode-title">Keys, Queries, and Values (It's Not That Scary)</div>
+          <div class="episode-desc">The QKV framework broken down without a single matrix equation. What each vector represents, and why the dot product actually makes intuitive sense.</div>
+        </div>
+      </div>
+      <div class="episode">
+        <div class="episode-num">EP 03</div>
+        <div>
+          <div class="episode-title">Multi-Head Attention: Why One Isn't Enough</div>
+          <div class="episode-desc">Running attention in parallel, across different "representation subspaces." Why this gives transformers richer understanding than single-head attention.</div>
+        </div>
+      </div>
+      <div class="episode">
+        <div class="episode-num">EP 04</div>
+        <div>
+          <div class="episode-title">Positional Encoding: How Transformers Know Word Order</div>
+          <div class="episode-desc">Unlike RNNs, transformers process tokens in parallel — so they need a way to inject sequence information. Sinusoidal encoding, explained.</div>
+        </div>
+      </div>
+      <div class="episode">
+        <div class="episode-num">EP 05</div>
+        <div>
+          <div class="episode-title">Training Dynamics: Loss, Backprop, and Why Scale Works</div>
+          <div class="episode-desc">How transformers actually learn. From cross-entropy loss to the empirical scaling laws that changed how the field thinks about model development.</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Why This Format</h2>
+    <p>
+      The technical AI space has a communication problem. The people who understand transformers deeply rarely make content accessible to curious non-experts. The people who make accessible content often strip out the parts that actually matter. I'm trying to do neither.
+    </p>
+    <p>
+      You ask. Sheezu solves.
+    </p>
+  </div>
+
+  <div class="blog-footer">
+    <a href="/#writing" class="blog-back">← All Writing</a>
+    <span class="blog-meta">© 2026 Shaza Azher</span>
+  </div>
+</div>
+
+<script>
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+</script>
+</body>
+</html>
