@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing — Shaza Azher</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .page-hero {
+      padding: 8rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin-bottom: 2.5rem;
+      transition: color 0.25s;
+    }
+    .back-link:hover { color: var(--rose); }
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .page-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding: 2.5rem 0 0;
+    }
+    .filter-btn {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: transparent;
+      color: var(--fg-muted);
+      cursor: pointer;
+      transition: border-color 0.25s, color 0.25s, background 0.25s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--rose);
+      color: var(--rose);
+      background: rgba(212,132,154,.07);
+    }
+
+    /* Writing list */
+    .writing-list {
+      padding: 3rem 0 6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .writing-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.25s;
+    }
+    @media (min-width: 768px) {
+      .writing-row {
+        grid-template-columns: 180px 1fr auto;
+        align-items: start;
+        gap: 2.5rem;
+      }
+    }
+    .writing-row:hover .wr-title { color: var(--rose); }
+    .writing-row:hover .wr-arrow { color: var(--rose); opacity: 1; }
+
+    .wr-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .wr-type {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--lavender);
+      border: 1px solid rgba(164,141,200,.35);
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      width: fit-content;
+    }
+    .wr-date {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--fg-muted);
+    }
+    .wr-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+      transition: color 0.25s;
+    }
+    .wr-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--fg-muted);
+    }
+    .wr-arrow {
+      font-size: 1.1rem;
+      color: var(--fg-muted);
+      opacity: 0.4;
+      transition: color 0.25s, opacity 0.25s, transform 0.25s;
+      align-self: center;
+      flex-shrink: 0;
+    }
+    .writing-row:hover .wr-arrow { transform: translate(3px, -3px); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">shaza<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#skills">Skills</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/writing.html">Writing</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <div class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/">Home</a>
+  <a href="/writing.html">All Writing</a>
+  <a href="/projects.html">All Projects</a>
+  <a href="/#contact">Contact</a>
+</div>
+
+<div class="container">
+  <div class="page-hero">
+    <a href="/" class="back-link">← Back to Portfolio</a>
+    <p class="page-subtitle">/ 05 &nbsp;·&nbsp; All Pieces</p>
+    <h1 class="page-title">Writing.</h1>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="essay">Essay</button>
+      <button class="filter-btn" data-filter="research">Research</button>
+      <button class="filter-btn" data-filter="content">Content</button>
+    </div>
+  </div>
+
+  <div class="writing-list">
+
+    <a href="/blog/performed-intellect.html" class="writing-row" data-category="essay">
+      <div class="wr-meta">
+        <span class="wr-type">Essay · Substack</span>
+        <span class="wr-date">April 2026</span>
+      </div>
+      <div>
+        <h2 class="wr-title">The Performed Intellect and the Pathologized Soft</h2>
+        <p class="wr-desc">On the cultural glorification of curated self-presentation versus the stigmatizing of warmth, relational virtue, and emotional honesty. Uncomfortable but seen.</p>
+      </div>
+      <span class="wr-arrow">↗</span>
+    </a>
+
+    <a href="/blog/genomewise.html" class="writing-row" data-category="research">
+      <div class="wr-meta">
+        <span class="wr-type">Research · bioRxiv</span>
+        <span class="wr-date">March 2026</span>
+      </div>
+      <div>
+        <h2 class="wr-title">GenomeWise: RAG-Based Genomic Variant Annotation</h2>
+        <p class="wr-desc">Preprint introducing a retrieval-augmented pipeline for genomic variant interpretation using DNABERT, FAISS, and locally-hosted LLMs.</p>
+      </div>
+      <span class="wr-arrow">↗</span>
+    </a>
+
+    <a href="/blog/genomics-bias.html" class="writing-row" data-category="research">
+      <div class="wr-meta">
+        <span class="wr-type">Research · Frontiers in Genetics</span>
+        <span class="wr-date">February 2026</span>
+      </div>
+      <div>
+        <h2 class="wr-title">Representation Bias in Genomic Databases: A South Asian Lens</h2>
+        <p class="wr-desc">Equity-focused analysis of the underrepresentation of South Asian populations in global genomic datasets and its downstream clinical consequences.</p>
+      </div>
+      <span class="wr-arrow">↗</span>
+    </a>
+
+    <a href="/blog/transformers.html" class="writing-row" data-category="content">
+      <div class="wr-meta">
+        <span class="wr-type">Content · @sheezusolves</span>
+        <span class="wr-date">Ongoing</span>
+      </div>
+      <div>
+        <h2 class="wr-title">How Transformers Actually Work (5-part series)</h2>
+        <p class="wr-desc">From attention mechanisms to training dynamics — explained on camera, GRWM style. Building a bridge between deep tech and a curious internet.</p>
+      </div>
+      <span class="wr-arrow">↗</span>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container" style="display:contents">
+    <span>© 2026 Shaza Azher</span>
+    <span class="footer-loc">Islamabad, PK</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+  const toggle = document.getElementById('nav-toggle');
+  const menu   = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+  /* Filter */
+  const btns = document.querySelectorAll('.filter-btn');
+  const rows = document.querySelectorAll('.writing-row');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      rows.forEach(row => {
+        row.style.display = (f === 'all' || row.dataset.category === f) ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>
